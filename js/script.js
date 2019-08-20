@@ -121,10 +121,15 @@ function kernelFilter(kernel) {
 $("#upload").change(function() {
   readURL(this);
 });
-$("#greyscale").click(function() {
-  filterGrayscale();
+$("#edgeDetection").click(function() {
+  var kernel = [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]];
+  kernelFilter(kernel);
 });
-$("#blur").click(function() {
+$("#sharpen").click(function() {
+  var kernel = [[0, -1, 0], [-1, 5, -1], [0, -1, 0]];
+  kernelFilter(kernel);
+});
+$("#boxBlur").click(function() {
   var kernel = [
     [1 / 9, 1 / 9, 1 / 9],
     [1 / 9, 1 / 9, 1 / 9],
@@ -132,13 +137,18 @@ $("#blur").click(function() {
   ];
   kernelFilter(kernel);
 });
-$("#outline").click(function() {
-  var kernel = [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]];
+$("#gausianBlur").click(function() {
+  var kernel = [
+    [1 / 256, 4 / 256, 6 / 256, 4 / 256, 1 / 256],
+    [4 / 256, 16 / 256, 24 / 256, 16 / 256, 4 / 256],
+    [6 / 256, 24 / 256, 36 / 256, 24 / 256, 6 / 256],
+    [4 / 256, 16 / 256, 24 / 256, 16 / 256, 4 / 256],
+    [1 / 256, 4 / 256, 6 / 256, 4 / 256, 1 / 256]
+  ];
   kernelFilter(kernel);
 });
-$("#sharpening").click(function() {
-  var kernel = [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]];
-
+$("#embos").click(function() {
+  var kernel = [[-2,-1,0], [-1,1,1], [0,1,2]];
   kernelFilter(kernel);
 });
 
